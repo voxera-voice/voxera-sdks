@@ -1,0 +1,19 @@
+{
+  "protocol": "voxera",
+  "version": "1.0",
+  "canonicalEvents": {
+    "newProducer": "new-producer",
+    "clearAction": "clear_action",
+    "sendMessage": "send-message",
+    "conversationStart": "conversation:start",
+    "conversationEnd": "conversation:end"
+  },
+  "legacyAliases": {
+    "new-producer": ["newProducer"],
+    "clear_action": ["clear-action"]
+  },
+  "schemas": {
+    "init-session-connection": "./init-session-connection.schema.json",
+    "command-result": "./command-result.schema.json"
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://voxera.dev/schemas/v1/init-session-connection.schema.json",
+  "title": "Voxera init-session-connection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sessionId",
+    "clientType",
+    "protocolVersion"
+  ],
+  "anyOf": [
+    {
+      "required": [
+        "appKey"
+      ]
+    },
+    {
+      "required": [
+        "sessionToken"
+      ]
+    }
+  ],
+  "properties": {
+    "sessionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "appKey": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sessionToken": {
+      "type": "string",
+      "minLength": 1
+    },
+    "agentId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "clientType": {
+      "enum": [
+        "web",
+        "ios",
+        "android",
+        "react-native",
+        "flutter"
+      ]
+    },
+    "protocolVersion": {
+      "const": "1.0"
+    },
+    "threadId": {
+      "type": "string"
+    },
+    "chatProfile": true,
+    "userId": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "user": {
+      "type": "object"
+    },
+    "userInfo": {
+      "type": "object"
+    },
+    "metadata": {
+      "type": "object"
+    },
+    "language": {
+      "type": "string",
+      "description": "BCP-47 tag or \"auto\". A value that is not a valid tag is ignored, not refused."
+    },
+    "ttsConfig": {
+      "type": "object"
+    },
+    "transcriptionConfig": {
+      "type": "object"
+    },
+    "modelConfig": {
+      "type": "object"
+    },
+    "tools": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "function"
+        ],
+        "properties": {
+          "type": {
+            "const": "function"
+          },
+          "function": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string"
+              },
+              "parameters": {
+                "type": "object"
+              },
+              "strict": {
+                "type": "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "additionalSystemPrompts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "initialMessages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "role",
+          "content"
+        ],
+        "properties": {
+          "role": {
+            "enum": [
+              "user",
+              "assistant",
+              "system"
+            ]
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "selectedModel": {
+      "type": "string"
+    },
+    "selectedVoice": {
+      "type": "string"
+    },
+    "workspaceId": {
+      "type": "string"
+    },
+    "clientDateTime": {
+      "type": "string"
+    }
+  }
+}

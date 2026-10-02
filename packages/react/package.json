@@ -1,0 +1,69 @@
+{
+  "name": "@voxera/sdk-react",
+  "version": "2.2.0",
+  "description": "React hooks for the Voxera realtime voice platform",
+  "license": "MIT",
+  "author": "Voxera <voicevoxera@gmail.com>",
+  "homepage": "https://voxera-voice.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxera-voice/voxera-sdks.git",
+    "directory": "packages/react"
+  },
+  "bugs": {
+    "url": "https://github.com/voxera-voice/voxera-sdks/issues"
+  },
+  "keywords": [
+    "voxera",
+    "voice-ai",
+    "react",
+    "hooks",
+    "webrtc",
+    "realtime",
+    "sdk",
+    "voice-agent",
+    "conversational-ai",
+    "voice-assistant",
+    "speech-to-text",
+    "text-to-speech",
+    "llm"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run typecheck",
+    "prepack": "npm run build && npm test"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@voxera/sdk-web": "^0.4.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "typescript": "5.7.2"
+  }
+}

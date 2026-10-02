@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://voxera.dev/schemas/v1/command-result.schema.json",
+  "title": "Voxera command result",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ok",
+        "data"
+      ],
+      "properties": {
+        "ok": {
+          "const": true
+        },
+        "data": true
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ok",
+        "error"
+      ],
+      "properties": {
+        "ok": {
+          "const": false
+        },
+        "error": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "message"
+          ],
+          "properties": {
+            "code": {
+              "enum": [
+                "CONNECTION_FAILED",
+                "AUTHENTICATION_FAILED",
+                "CAPACITY_LIMIT",
+                "WEBRTC_ERROR",
+                "MEDIA_ACCESS_DENIED",
+                "TIMEOUT",
+                "SERVER_ERROR",
+                "INVALID_CONFIG",
+                "PROVIDER_UNAVAILABLE",
+                "SPEECH_BUDGET_EXHAUSTED",
+                "NETWORK_ERROR",
+                "UNSUPPORTED_PROTOCOL",
+                "UNSUPPORTED_FEATURE",
+                "UNKNOWN_ERROR"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1
+            },
+            "details": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

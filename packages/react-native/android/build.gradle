@@ -1,0 +1,50 @@
+buildscript {
+  repositories {
+    google()
+    mavenCentral()
+  }
+  dependencies {
+    classpath "com.android.tools.build:gradle:8.5.2"
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.20"
+  }
+}
+
+apply plugin: "com.android.library"
+apply plugin: "org.jetbrains.kotlin.android"
+
+android {
+  namespace "com.voxera.reactnative"
+  compileSdk 35
+
+  defaultConfig {
+    minSdk 24
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
+  }
+
+  kotlinOptions {
+    jvmTarget = "17"
+  }
+}
+
+repositories {
+  google()
+  mavenCentral()
+  // The Android SDK is served by JitPack, built from the voxera-android tag.
+  // Declared here so an app does not have to add the repository itself.
+  maven { url "https://jitpack.io" }
+}
+
+dependencies {
+  implementation "com.facebook.react:react-android"
+
+  def localVoxeraSdk = rootProject.findProject(":voxera-sdk-android")
+  if (localVoxeraSdk != null) {
+    implementation localVoxeraSdk
+  } else {
+    implementation "com.github.voxera-voice:voxera-android:1.1.43"
+  }
+}

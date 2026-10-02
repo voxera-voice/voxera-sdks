@@ -1,0 +1,58 @@
+{
+  "name": "@voxera/protocol",
+  "version": "0.3.2",
+  "description": "Versioned wire protocol and shared types for Voxera SDKs and server",
+  "license": "MIT",
+  "author": "Voxera <voicevoxera@gmail.com>",
+  "homepage": "https://voxera-voice.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxera-voice/voxera-sdks.git",
+    "directory": "packages/protocol"
+  },
+  "bugs": {
+    "url": "https://github.com/voxera-voice/voxera-sdks/issues"
+  },
+  "keywords": [
+    "voxera",
+    "voice-ai",
+    "protocol",
+    "webrtc",
+    "realtime",
+    "voice-agent"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist",
+    "schemas"
+  ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./schemas/*": "./schemas/*"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json && node scripts/write-cjs-package.mjs",
+    "validate": "node scripts/validate.mjs",
+    "test": "npm run validate",
+    "prepack": "npm run build && npm run validate"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "typescript": "5.7.2"
+  }
+}

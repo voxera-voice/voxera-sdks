@@ -1,0 +1,80 @@
+{
+  "name": "@voxera/sdk-react-native",
+  "version": "2.2.3",
+  "description": "React Native client for the Voxera realtime voice and video platform",
+  "license": "MIT",
+  "author": "Voxera <voicevoxera@gmail.com>",
+  "homepage": "https://voxera-voice.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxera-voice/voxera-sdks.git",
+    "directory": "packages/react-native"
+  },
+  "bugs": {
+    "url": "https://github.com/voxera-voice/voxera-sdks/issues"
+  },
+  "keywords": [
+    "voxera",
+    "voice-ai",
+    "react-native",
+    "webrtc",
+    "realtime",
+    "sdk",
+    "expo",
+    "voice-agent",
+    "conversational-ai",
+    "voice-assistant",
+    "speech-to-text",
+    "text-to-speech",
+    "llm"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "LICENSE",
+    "README.md",
+    "VoxeraReactNative.podspec",
+    "android",
+    "app.plugin.cjs",
+    "dist",
+    "ios",
+    "react-native.config.js",
+    "src"
+  ],
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "react-native": "./src/index.ts",
+  "exports": {
+    ".": {
+      "react-native": "./src/index.ts",
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./app.plugin": "./app.plugin.cjs"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json && node scripts/write-cjs-package.mjs",
+    "typecheck": "tsc -p tsconfig.esm.json --noEmit",
+    "test": "npm run typecheck && node scripts/check-native-bridge.mjs",
+    "prepack": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@voxera/protocol": "^0.3.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.2.0",
+    "react-native": ">=0.76.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "typescript": "5.7.2"
+  }
+}
